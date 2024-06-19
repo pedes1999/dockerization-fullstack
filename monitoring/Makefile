@@ -6,7 +6,7 @@ init-directories:
 	sudo mkdir -p /sys
 	sudo mkdir -p /dev/disk
 
-prometheus: clean network cadvisor
+prometheus: clean init-directories network cadvisor
 	podman run --name prometheus \
 		-p 9090:9090 \
 		--mount type=bind,src=$(shell pwd)/prometheus.yml,dst=/etc/prometheus/prometheus.yml \
